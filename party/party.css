@@ -1,0 +1,270 @@
+body {
+	height:100vh;
+	background: linear-gradient(141deg, #ffffff, #000000);
+	background-size: 400% 400%;
+	-webkit-animation: background 2s 3s forwards ease ;
+	-moz-animation: background 2s 3s forwards ease ;
+	animation: background 2s 3s forwards ease ;
+	-webkit-animation-iteration-count:1;
+	-moz-animation-iteration-count:1;
+	animation-iteration-count:1;
+
+}
+
+
+
+@-webkit-keyframes background {
+    0%{background-position:10% 0%}
+    100%{background-position:91% 100%}
+}
+@-moz-keyframes background {
+    0%{background-position:10% 0%}
+    100%{background-position:91% 100%}
+}
+@keyframes background { 
+    0%{background-position:10% 0%}
+    100%{background-position:91% 100%}
+}
+
+
+
+@keyframes shark {
+  from { transform: translateX(-100%); }
+  to {transform:translateX(350%);}
+ }
+
+
+@keyframes discoball {
+  0% { transform: translateY(-100%); }
+  100% {transform:translateX(0%);}
+ }
+
+ @keyframes third {
+  0% { 
+  	transform: scale(5);
+  	opacity:0;
+  }
+  20% {
+  	transform:scale(1);
+  	opacity:1;
+  }
+  33% {
+  	transform:scale(1);
+  	opacity:0;
+  }
+ }
+
+  @keyframes second {
+  33% { 
+  	transform: scale(5);
+  	opacity:0;
+  }
+  53% {
+  	transform:scale(1);
+  	opacity:1;
+  }
+  66% {
+  	transform:scale(1);
+  	opacity:0;
+  }
+ }
+
+  @keyframes first {
+  66% { 
+  	transform: scale(5);
+  	opacity:0;
+  }
+  86% {
+  	transform:scale(1);
+  	opacity:1;
+  }
+  100% {
+  	transform:scale(1);
+  	opacity:0;
+  }
+ }
+
+
+
+#first {
+	transform:scale(5);
+	opacity:0;
+	animation:first 3s ease;
+}
+
+#second {
+	transform:scale(5);
+	opacity:0;
+	animation:second 3s ease;
+}
+
+#third {
+	transform:scale(5);
+	opacity:0;
+	animation:third 3s ease;
+}
+
+
+.countdown {
+	position:fixed;
+	z-index:999;
+  	display: flex;
+  	justify-content: center;
+  	align-items: center;
+	left:50%;
+	top:50%;
+}
+
+.countdown-number {
+	color:#C278E4;
+	position:absolute;
+	font-size:20em;
+	font-weight:700;
+}
+
+.shark {
+	z-index:999;
+	transform:translateX(-100%);
+	position:fixed;
+	bottom:100px;
+	animation:shark 15s 3s linear infinite;
+
+}
+
+
+.disco-ball {
+	width:300px;
+	height:auto;
+	z-index:999;
+	transform:translateY(-100%);
+	position:fixed;
+	left:41%;
+	top:0px;
+	animation:discoball 1s 3s linear;
+	animation-fill-mode: forwards;  
+}
+
+
+
+@keyframes bouncingTail {
+  0% {
+    transform: rotateX(0); }
+  50% {
+    transform: rotateX(10deg); }
+  100% {
+    transform: rotateX(0); } }
+
+@keyframes bouncingMouth {
+  0% {
+    transform: rotate(-3deg); }
+  50% {
+    transform: rotate(3deg); }
+  100% {
+    transform: rotate(-3deg); } }
+
+@keyframes bouncingEyes {
+  0% {
+    transform: translateY(-20px); }
+  50% {
+    transform: translateY(20px); }
+  100% {
+    transform: translateY(-20px); } }
+
+@keyframes bouncingBody {
+  0% {
+    transform: scale(1, 1); }
+  50% {
+    transform: scale(1, 0.93); }
+  100% {
+    transform: scale(1); } }
+
+
+@keyframes lasers {
+  from { opacity:0; }
+  to { opacity:1;}
+ }
+
+
+.lasers {
+	opacity:0;
+	animation:lasers 1s 3s forwards;
+	animation-iteration-count:1;
+
+}
+.laser-beam {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 3px;
+  height: 500%;
+  background: rgba(99, 195, 231, 0.6);
+  -webkit-box-shadow: 0px 0px 15px 0px #63c3e7;
+  -moz-box-shadow: 0px 0px 15px 0px #63c3e7;
+  box-shadow: 0px 0px 15px 0px #63c3e7;
+  -moz-transform-origin: 0 100%;
+  -ms-transform-origin: 0 100%;
+  -webkit-transform-origin: 0 100%;
+  transform-origin: 0 100%;
+  -webkit-animation: laser 7s 3s infinite;
+}
+.laser-beam.red {
+  -webkit-animation: laser 7.5s 3s infinite;
+  background: rgba(236, 19, 65, 0.6);
+  -webkit-box-shadow: 0px 0px 15px 0px #ec1341;
+  -moz-box-shadow: 0px 0px 15px 0px #ec1341;
+  box-shadow: 0px 0px 15px 0px #ec1341;
+}
+.laser-beam.purple {
+  -webkit-animation: laser 7.3s 3s infinite;
+  background: rgba(204, 102, 255, 0.6);
+  -webkit-box-shadow: 0px 0px 15px 0px #cc66ff;
+  -moz-box-shadow: 0px 0px 15px 0px #cc66ff;
+  box-shadow: 0px 0px 15px 0px #cc66ff;
+}
+.laser-beam.green {
+  -webkit-animation: laser 7.7s 3s infinite;
+  background: rgba(86, 212, 69, 0.6);
+  -webkit-box-shadow: 0px 0px 15px 0px #56d445;
+  -moz-box-shadow: 0px 0px 15px 0px #56d445;
+  box-shadow: 0px 0px 15px 0px #56d445;
+}
+
+@-webkit-keyframes laser {
+  0% {
+    -moz-transform: rotate(-75deg);
+    -ms-transform: rotate(-75deg);
+    -webkit-transform: rotate(-75deg);
+    transform: rotate(-75deg);
+  }
+
+  50% {
+    -moz-transform: rotate(75deg);
+    -ms-transform: rotate(75deg);
+    -webkit-transform: rotate(75deg);
+    transform: rotate(75deg);
+  }
+  100% {
+    -moz-transform: rotate(-75deg);
+    -ms-transform: rotate(-75deg);
+    -webkit-transform: rotate(-75deg);
+    transform: rotate(-75deg);
+  }
+}
+
+
+#eye {
+  animation: bouncingEyes 1s 3scubic-bezier(0.17, 0.67, 0.34, 0.92) infinite; }
+
+#mouth {
+  transform-origin: 50% 50%;
+  animation: bouncingMouth 1s 3s cubic-bezier(0.17, 0.67, 0.34, 0.92) infinite; }
+
+#body, #bodyFur, #highlight, #shadow {
+  transform-origin: 0% 50%;
+  animation: bouncingBody 1s 3s cubic-bezier(0.17, 0.67, 0.34, 0.92) infinite; }
+
+#tail, #tailFur, #tailShadow {
+  animation: bouncingTail 1s 3s cubic-bezier(0.17, 0.67, 0.34, 0.92) infinite; }
+
+
+  
