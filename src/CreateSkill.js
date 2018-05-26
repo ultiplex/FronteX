@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 
 import { Web3Context, IdentitiesContext } from './Context';
 import Kitty from './Kitty';
+import Loading from './Loading';
 
 class CreateSkill extends Component {
   ipfs = null;
   state = {
     ipfsLoaded: false,
-    uploading: false,
+    uploading: true,
     ipfsHash: '',
     isDropdownOpened: false,
     file: null,
@@ -49,6 +50,11 @@ class CreateSkill extends Component {
 
   render() {
     const { ipfsLoaded, uploading, ipfsHash, isDropdownOpened, file, title, selectedKitty } = this.state;
+
+    if (uploading) {
+      return <Loading message="Uploading on IPFS" />;
+    }
+
     return (
       <section className="section">
         <Web3Context.Consumer>

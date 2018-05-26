@@ -262,9 +262,9 @@ span.file-label{
 
 .IPFS{
 	opacity:0;
-	animation:IPFS 3s ease-in;
+	animation:IPFS 3s ease-in infinite;
 }
 
 .ERC721 {
-	animation:ERC721 3s ease-in;
+	animation:ERC721 3s ease-in infinite;
 }
