@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-4 is-offset-4">
+
+          <h1 class="title">
+            Congrats!
+          </h1>
+          
+          <div class="preview">
+            <div class="label-description">
+              <p>Genesis meme</p>
+            </div>
+            <img src="img/barbossa.svg">
+
+          </div>
+
+          <p class="label">Price</p>
+          <input class="input is-large" type="text" placeholder="Text input">
+
+          <a class="button is-generate" href="generating.html">Start teaching</a>
+
+        </div>
+      </div>
+    </div>
+  </section>
+    <script>
+  var dropdown = document.querySelector('.dropdown');
+dropdown.addEventListener('click', function(event) {
+  event.stopPropagation();
+  dropdown.classList.toggle('is-active');
+});
+</script>
+  </body>
+
+</html>

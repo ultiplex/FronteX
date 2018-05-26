@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hello Bulma!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+  </head>
+  <body>
+  <section class="section">
+    <div class="container">
+      <div class="columns">
+        <div class="column is-4 is-offset-4">
+
+          <div class="dropdown ">
+            <div class="dropdown-trigger">
+              <button class="button is-large" aria-haspopup="true" aria-controls="dropdown-menu3">
+                <div class="profile-picture">
+                  <img src="img/barbossa.svg">
+                </div>
+                <span>Cpt. Barbossa</span>
+                <span class="icon is-small">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+              <div class="dropdown-content">
+                <a href="#" class="dropdown-item">
+                  Kitty #1
+                </a>
+                <a href="#" class="dropdown-item">
+                  Kitty #2
+                </a>
+                <a href="#" class="dropdown-item">
+                  Kitty #3
+                </a>
+                <a href="#" class="dropdown-item">
+                  Kitty #4
+                </a>
+                <a href="#" class="dropdown-item">
+                  Kitty #5
+                </a>
+              </div>
+            </div>
+          </div>
+
+
+          
+          <div class="tile is-parent">
+            <article class="tile is-child">
+              <figure class="skill-preview">
+                <div class="label-description">
+                  <p>Genesis meme</p>
+                </div>
+                <img src="img/barbossa.svg">
+              </figure>
+              <figure class="skill-description">
+                <p class="skill-name">Dance dance!</p>
+                <div class="columns">
+                  <div class="column">
+                    <p class="skilled-title">Cpt. Barbossa</p>
+                  </div>
+                  <div class="column">
+                    <p class="skilled-title">Skilled</p><p class="skilled-number">2</p>
+                  </div>
+                </div>
+                <a class="button is-generate" style="margin-top:0;" href="generating.html">Learn for 0.01 ETH</a>
+              </figure>
+              
+            </article>
+          </div>
+          
+  
+         
+
+        </div>
+      </div>
+    </div>
+  </section>
+    <script>
+  var dropdown = document.querySelector('.dropdown');
+dropdown.addEventListener('click', function(event) {
+  event.stopPropagation();
+  dropdown.classList.toggle('is-active');
+});
+</script>
+  </body>
+
+</html>
