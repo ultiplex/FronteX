@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { HashRouter, Route, Link } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 
 import web3 from './web3';
 import Home from './Home';
 import CreateSkill from './CreateSkill';
+import ShowSkill from './ShowSkill';
 import { Web3Context } from './Context';
 import './App.css';
 
@@ -33,6 +34,7 @@ class App extends Component {
           <div>
             <Route path="/" exact component={Home} />
             <Route path="/create" exacat component={CreateSkill} />
+            <Route path="/show/:kittyId/:skillHash" exacat component={ShowSkill} />
           </div>
         </HashRouter>
       </Web3Context.Provider>

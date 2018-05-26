@@ -46,7 +46,11 @@ class CreateSkill extends Component {
                 available {JSON.stringify(available)} unlock {JSON.stringify(unlock)} address {JSON.stringify(account)}
               </p>
               {uploading && <p>uploading to ipfs</p>}
-              {ipfsLoaded && <Dropzone onDrop={this.onDrop} multiple={false} disabled={!unlock || uploading} />}
+              {ipfsLoaded && (
+                <Dropzone onDrop={this.onDrop} multiple={false} disabled={!unlock || uploading}>
+                  <p>Select or drop skill.js to upload</p>
+                </Dropzone>
+              )}
               {!uploading &&
                 ipfsHash && (
                   <a href={`https://ipfs.io/ipfs/${ipfsHash}`} target="_blank">
