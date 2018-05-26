@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Dropzone from 'react-dropzone';
 
-import { Web3Context } from './Context';
+import { Web3Context, IdentitiesContext } from './Context';
+import Kitty from './Kitty';
 
 class CreateSkill extends Component {
   ipfs = null;
@@ -9,6 +9,10 @@ class CreateSkill extends Component {
     ipfsLoaded: false,
     uploading: false,
     ipfsHash: '',
+    isDropdownOpened: false,
+    file: null,
+    title: '',
+    selectedKitty: null,
   };
 
   componentDidMount(props) {
@@ -18,7 +22,12 @@ class CreateSkill extends Component {
     });
   }
 
-  onDrop = ([file]) => {
+  onFile = (event) => {
+    const [file] = event.target.files;
+    this.setState({ file });
+  };
+
+  generate = () => {
     this.setState({ uploading: true });
     const reader = new FileReader();
     reader.onload = () => {
@@ -31,36 +40,109 @@ class CreateSkill extends Component {
         .catch((e) => console.error(e))
         .then(() => this.setState({ uploading: false }));
     };
-    reader.readAsArrayBuffer(file);
+    reader.readAsArrayBuffer(this.state.file);
+  };
+
+  selectKitty = (selectedKitty) => () => {
+    this.setState({ selectedKitty });
   };
 
   render() {
-    const { ipfsLoaded, uploading, ipfsHash } = this.state;
+    const { ipfsLoaded, uploading, ipfsHash, isDropdownOpened, file, title, selectedKitty } = this.state;
     return (
-      <div>
-        <p>CreateSkill</p>
+      <section className="section">
         <Web3Context.Consumer>
           {({ available, unlock, account }) => (
-            <React.Fragment>
-              <p>
-                available {JSON.stringify(available)} unlock {JSON.stringify(unlock)} address {JSON.stringify(account)}
-              </p>
-              {uploading && <p>uploading to ipfs</p>}
-              {ipfsLoaded && (
-                <Dropzone onDrop={this.onDrop} multiple={false} disabled={!unlock || uploading}>
-                  <p>Select or drop skill.js to upload</p>
-                </Dropzone>
-              )}
-              {!uploading &&
-                ipfsHash && (
-                  <a href={`https://ipfs.io/ipfs/${ipfsHash}`} target="_blank">
-                    ipfsHash
+            <div className="container">
+              <div className="columns">
+                <div className="column is-4 is-offset-4">
+                  <h1 className="title">Add a skill</h1>
+                  <p className="label">Avatar</p>
+                  <IdentitiesContext.Consumer>
+                    {(tokens) => (
+                      <div
+                        className={`dropdown ${isDropdownOpened && 'is-active'} ${tokens.length === 0 && 'disabled'}`}
+                        onClick={() =>
+                          this.setState(({ isDropdownOpened }) => ({
+                            isDropdownOpened: tokens.length > 0 && !isDropdownOpened,
+                          }))
+                        }
+                      >
+                        <div className="dropdown-trigger">
+                          <button className="button is-large" aria-haspopup="true" aria-controls="dropdown-menu3">
+                            {selectedKitty ? (
+                              <React.Fragment>
+                                <div className="profile-picture">
+                                  <Kitty id={3} />
+                                </div>
+                                <span>Kitty #{selectedKitty}</span>
+                                <span className="icon is-small">
+                                  <i className="fas fa-angle-down" aria-hidden="true" />
+                                </span>
+                              </React.Fragment>
+                            ) : (
+                              <span>
+                                {tokens.length > 0 ? (
+                                  <React.Fragment>
+                                    Select Kitty{' '}
+                                    <span className="icon is-small">
+                                      <i className="fas fa-angle-down" aria-hidden="true" />
+                                    </span>
+                                  </React.Fragment>
+                                ) : (
+                                  'No kitty found'
+                                )}
+                              </span>
+                            )}
+                          </button>
+                        </div>
+                        <div className="dropdown-menu" id="dropdown-menu3" role="menu">
+                          <div className="dropdown-content">
+                            {tokens.map(({ token }) => (
+                              <a className="dropdown-item" key={token} onClick={this.selectKitty(token)}>
+                                Kitty #{token}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </IdentitiesContext.Consumer>
+                  <p className="label">Title</p>
+                  <input
+                    className="input is-large"
+                    type="text"
+                    placeholder="Text input"
+                    value={title}
+                    onInput={(e) => this.setState({ title: e.target.value })}
+                  />
+
+                  <p className="label">Files</p>
+                  <div className="file is-boxed">
+                    <label className="file-label">
+                      <input className="file-input" type="file" onChange={this.onFile} />
+                      <span className="file-cta">
+                        {!file && (
+                          <span className="file-icon">
+                            <img src="img/upload.svg" />
+                          </span>
+                        )}
+                        <span className="file-label">{file ? file.name : 'Upload files!'}</span>
+                      </span>
+                    </label>
+                  </div>
+                  <a
+                    className={`button is-generate ${!file || !title || !selectedKitty ? 'disabled' : ''}`}
+                    onClick={this.generate}
+                  >
+                    Generate skill
                   </a>
-                )}
-            </React.Fragment>
+                </div>
+              </div>
+            </div>
           )}
         </Web3Context.Consumer>
-      </div>
+      </section>
     );
   }
 }
