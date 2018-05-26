@@ -7,6 +7,8 @@ import CreateSkill from './CreateSkill';
 import ShowSkill from './ShowSkill';
 import { Web3Context, IdentitiesContext } from './Context';
 
+const KittyAddress = '0x373fbbb20551121e0a24a41d14c48b8ee0599d89';
+
 class App extends Component {
   state = {
     web3State: { available: false, unlock: false, account: null },
@@ -31,7 +33,7 @@ class App extends Component {
 
   getIdentities = async (account) => {
     fetch(
-      `https://api.userfeeds.io/ranking/experimental_tokens;identity=${account.toLowerCase()};asset=kovan:0x373fbbb20551121e0a24a41d14c48b8ee0599d89/`,
+      `https://api.userfeeds.io/ranking/experimental_tokens;identity=${account.toLowerCase()};asset=kovan:${KittyAddress}/`,
     )
       .then((res) => res.json())
       .then((d) => {

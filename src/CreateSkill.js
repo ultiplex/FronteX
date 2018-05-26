@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 
-import { Web3Context, IdentitiesContext } from './Context';
+import web3 from './web3';
 import Kitty from './Kitty';
 import Loading from './Loading';
+import { Web3Context, IdentitiesContext } from './Context';
+import { skilleXAbi, skilleXAddress } from './contracts';
+
+const KittyAddress = '0x373fbbb20551121e0a24a41d14c48b8ee0599d89';
 
 class CreateSkill extends Component {
   ipfs = null;
   state = {
     ipfsLoaded: false,
-    uploading: true,
+    uploading: false,
     ipfsHash: '',
     isDropdownOpened: false,
     file: null,
@@ -36,12 +40,21 @@ class CreateSkill extends Component {
         .add(Buffer.from(reader.result))
         .then(([{ hash: ipfsHash }]) => {
           this.setState({ ipfsHash });
-          console.log('ipfsHash', ipfsHash);
+          this.registerSkill(ipfsHash);
         })
         .catch((e) => console.error(e))
         .then(() => this.setState({ uploading: false }));
     };
     reader.readAsArrayBuffer(this.state.file);
+  };
+
+  registerSkill = async (ipfsHash) => {
+    const { title, selectedKitty } = this.state;
+    const web3Instance = await web3;
+    const [from] = await web3Instance.eth.getAccounts();
+    const skilleX = new web3Instance.eth.Contract(skilleXAbi, skilleXAddress);
+    const transaction = skilleX.methods.createSkill(title, ipfsHash, KittyAddress, selectedKitty).send({ from });
+    transaction.on('transactionHash', (txHash) => console.log('txHash', txHash));
   };
 
   selectKitty = (selectedKitty) => () => {
