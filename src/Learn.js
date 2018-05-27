@@ -159,9 +159,11 @@ const Tile = ({
   <div className="tile is-parent">
     <article className="tile is-child">
       <figure className="skill-preview">
-        <div className="label-description">
-          <p>Genesis meme</p>
-        </div>
+        {generation === '0' && (
+          <div className="label-description">
+            <p>Genesis meme</p>
+          </div>
+        )}
         <SkilledKitty kittyId={teacherTokenId} skillHash={skillHash} />
       </figure>
       <figure className="skill-description">
