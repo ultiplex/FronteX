@@ -21,8 +21,8 @@ class CreateSkill extends Component {
   };
 
   componentDidMount() {
-    import('ipfs-api').then((Ipfs) => {
-      this.ipfs = new Ipfs('ipfs.infura.io', { protocol: 'https', port: 5001 });
+    import('ipfs-api/src/add').then((IpfsAdd) => {
+      this.ipfs = IpfsAdd({ host: 'ipfs.infura.io', port: '5001', protocol: 'https', 'api-path': '/api/v0/' });
       this.setState({ ipfsLoaded: true });
     });
   }
@@ -36,8 +36,7 @@ class CreateSkill extends Component {
     this.setState({ uploading: true });
     const reader = new FileReader();
     reader.onload = () => {
-      this.ipfs.files
-        .add(Buffer.from(reader.result))
+      this.ipfs(Buffer.from(reader.result))
         .then(([{ hash: ipfsHash }]) => {
           console.log('ipfsHash', ipfsHash);
           this.setState({ ipfsHash });

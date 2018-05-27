@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import web3 from './web3';
 import Kitty from './Kitty';
+import Learning from './Learning';
 import SkilledKitty from './SkilledKitty';
 import { IdentitiesContext } from './Context';
 import { skilleXAbi, skilleXAddress } from './contracts';
@@ -9,7 +11,7 @@ import { skilleXAbi, skilleXAddress } from './contracts';
 const KittyAddress = '0x373fbbb20551121e0a24a41d14c48b8ee0599d89';
 
 class Learn extends Component {
-  state = { isDropdownOpened: false, selectedKitty: null, offers: [] };
+  state = { isDropdownOpened: false, selectedKitty: null, offers: [], learning: false };
 
   componentDidMount() {
     this.getOffers();
@@ -50,6 +52,7 @@ class Learn extends Component {
   };
 
   learn = async (offerId, price, ipfsHash) => {
+    this.setState({ learning: true });
     const { selectedKitty } = this.state;
     const web3Instance = await web3;
     const [from] = await web3Instance.eth.getAccounts();
@@ -65,9 +68,15 @@ class Learn extends Component {
   };
 
   render() {
-    const { isDropdownOpened, selectedKitty, offers } = this.state;
+    const { isDropdownOpened, selectedKitty, offers, learning } = this.state;
+
+    if (learning) {
+      return <Learning kittyId={selectedKitty} />;
+    }
+
     return (
       <section className="section">
+        <Link to="/create">Create a skill</Link>
         <div className="container">
           <div className="columns">
             <div className="column is-4 is-offset-4">
