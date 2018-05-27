@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import SVGInline from 'react-svg-inline';
 
 const kittyRequests = new Map();
 const getKittySvg = (id) => {
@@ -54,7 +55,7 @@ class Kitty extends Component {
     const { svg } = this.state;
     return (
       <div ref={this.onRef} className={className} style={{ position: 'relative', ...style }}>
-        <div dangerouslySetInnerHTML={{ __html: svg }} />
+        <SVGInline svg={svg} />
       </div>
     );
   }
