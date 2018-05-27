@@ -287,16 +287,16 @@ const getStyles = (prefix) => {
     }
 
     .${prefix} #body,
-    #bodyFur,
-    #highlight,
-    #shadow {
+    .${prefix} #bodyFur,
+    .${prefix} #highlight,
+    .${prefix} #shadow {
       transform-origin: 0% 50%;
       animation: ${prefix}-bouncingBody 1s cubic-bezier(0.17, 0.67, 0.34, 0.92) infinite;
     }
 
     .${prefix} #tail,
-    #tailFur,
-    #tailShadow {
+    .${prefix} #tailFur,
+    .${prefix} #tailShadow {
       animation: ${prefix}-bouncingTail 1s cubic-bezier(0.17, 0.67, 0.34, 0.92) infinite;
     }
   `;

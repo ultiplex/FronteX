@@ -1,6 +1,7 @@
 {
   "name": "create-skill",
   "version": "0.1.0",
+  "home": "https://ultiplex.github.com/FronteX",
   "private": true,
   "dependencies": {
     "ipfs-api": "^22.0.0",
@@ -8,7 +9,6 @@
     "react-dom": "^16.4.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.4",
-    "react-svg-inline": "^2.1.0",
     "web3": "^1.0.0-beta.34"
   },
   "scripts": {

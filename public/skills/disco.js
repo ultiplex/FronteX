@@ -90,16 +90,16 @@ const getStyles = (prefix) => {
     }
 
     .${prefix} #body,
-    #bodyFur,
-    #highlight,
-    #shadow {
+    .${prefix} #bodyFur,
+    .${prefix} #highlight,
+    .${prefix} #shadow {
       transform-origin: 0% 50%;
       animation: ${prefix}-bouncingBody ${transitionTime} ${transitionFunction} infinite;
     }
 
     .${prefix} #tail,
-    #tailFur,
-    #tailShadow {
+    .${prefix} #tailFur,
+    .${prefix} #tailShadow {
       animation: ${prefix}-bouncingTail ${transitionTime} ${transitionFunction} infinite;
     }
   `;

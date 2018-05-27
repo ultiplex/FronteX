@@ -1,5 +1,29 @@
 import React, { Component } from 'react';
-import SVGInline from 'react-svg-inline';
+
+const travers = (nodes, postfix) => {
+  Array.from(nodes).forEach(($elm) => {
+    if ($elm.nodeName === 'clipPath' && $elm.id) {
+      $elm.id += postfix;
+    } else if ($elm.getAttribute('clip-path')) {
+      const clipPath = $elm.getAttribute('clip-path');
+      const reg = /url\(#(.+)\)/;
+      const res = reg.exec(clipPath);
+      if (res[1]) {
+        $elm.setAttribute('clip-path', `url(#${res[1]}${postfix})`);
+      }
+    } else {
+      travers($elm.children, postfix);
+    }
+  });
+};
+
+const scopeSvg = (svg) => {
+  const $svg = new DOMParser().parseFromString(svg, 'image/svg+xml').firstChild;
+  const randomPostfix = Math.ceil(Math.random() * Date.now()).toString(16);
+  travers($svg.children, randomPostfix);
+
+  return $svg.outerHTML;
+};
 
 const kittyRequests = new Map();
 const getKittySvg = (id) => {
@@ -17,8 +41,9 @@ const getKittySvg = (id) => {
       .then((kitty) => fetch(`https://cors-anywhere.herokuapp.com/${kitty.image_url_cdn}`))
       .then((res) => res.text())
       .then((svg) => {
-        localStorage.setItem(`kitty-${id}.svg`, svg);
-        return svg;
+        const scopedSvg = scopeSvg(svg);
+        localStorage.setItem(`kitty-${id}.svg`, scopedSvg);
+        return scopedSvg;
       });
   }
   kittyRequests.set(id, promise);
@@ -55,7 +80,8 @@ class Kitty extends Component {
     const { svg } = this.state;
     return (
       <div ref={this.onRef} className={className} style={{ position: 'relative', ...style }}>
-        <SVGInline svg={svg} />
+        {/* <SVGInline svg={svg} /> */}
+        <div dangerouslySetInnerHTML={{ __html: svg }} />
       </div>
     );
   }
