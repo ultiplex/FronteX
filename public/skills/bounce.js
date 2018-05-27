@@ -1,5 +1,5 @@
 const run = ($container) => {
-  const skillPrefix = `dance-skill-${Date.now().toString(16)}`;
+  const skillPrefix = `dance-skill-${Math.ceil(Math.random() * Date.now()).toString(16)}`;
   $container.classList.add(skillPrefix);
   $container.appendChild(getCanon());
   $container.appendChild(getStyles(skillPrefix));

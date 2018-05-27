@@ -39,6 +39,7 @@ class CreateSkill extends Component {
       this.ipfs.files
         .add(Buffer.from(reader.result))
         .then(([{ hash: ipfsHash }]) => {
+          console.log('ipfsHash', ipfsHash);
           this.setState({ ipfsHash });
           this.registerSkill(ipfsHash);
         })

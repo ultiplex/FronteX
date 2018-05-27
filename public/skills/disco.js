@@ -1,23 +1,32 @@
 const run = ($container) => {
-  const skillPrefix = `dance-skill-${Date.now().toString(16)}`;
+  const skillPrefix = `dance-skill-${Math.ceil(Math.random() * Date.now()).toString(16)}`;
   $container.classList.add(skillPrefix);
   $container.appendChild(getDiscoBall());
   $container.appendChild(getStyles(skillPrefix));
 };
 
 const getDiscoBall = () => {
-  const $div = document.createElement('div');
-  $div.classList.add('cannon');
+  const $img = document.createElement('img');
+  $img.classList.add('disco');
+  $img.src = 'https://ipfs.io/ipfs/QmeM9zPCC5FUqbn6iVqH1RTvHpzgyXrGHAz4n2zHJqGijP';
 
-  $div.innerHTML = `
-
-  `;
-  return $div;
+  return $img;
 };
 
 const getStyles = (prefix) => {
   const $style = document.createElement('style');
+  const transitionTime = '0.3s';
+  const transitionFunction = 'cubic-bezier(0.1, 0.9, 0.3, 0.8)';
+
   $style.innerText = `
+    .${prefix} .disco {
+      width: 20%;
+      height: 20%;
+      position: absolute;
+      top: 0;
+      left: 40%;
+    }
+
     .${prefix} svg {
       z-index: 1;
       position: relative;
@@ -72,12 +81,12 @@ const getStyles = (prefix) => {
     }
 
     .${prefix} #eye {
-      animation: ${prefix}-bouncingEyes 1s cubic-bezier(0.17, 0.67, 0.34, 0.92) infinite;
+      animation: ${prefix}-bouncingEyes ${transitionTime} ${transitionFunction} infinite;
     }
 
     .${prefix} #mouth {
       transform-origin: 50% 50%;
-      animation: ${prefix}-bouncingMouth 1s cubic-bezier(0.17, 0.67, 0.34, 0.92) infinite;
+      animation: ${prefix}-bouncingMouth ${transitionTime} ${transitionFunction} infinite;
     }
 
     .${prefix} #body,
@@ -85,13 +94,13 @@ const getStyles = (prefix) => {
     #highlight,
     #shadow {
       transform-origin: 0% 50%;
-      animation: ${prefix}-bouncingBody 1s cubic-bezier(0.17, 0.67, 0.34, 0.92) infinite;
+      animation: ${prefix}-bouncingBody ${transitionTime} ${transitionFunction} infinite;
     }
 
     .${prefix} #tail,
     #tailFur,
     #tailShadow {
-      animation: ${prefix}-bouncingTail 1s cubic-bezier(0.17, 0.67, 0.34, 0.92) infinite;
+      animation: ${prefix}-bouncingTail ${transitionTime} ${transitionFunction} infinite;
     }
   `;
 
