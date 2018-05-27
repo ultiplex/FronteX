@@ -7,3 +7,5 @@ This PoC is inspired by the early human societies. We argue that imitation was a
 We believe that NFTs understood as crypto avatars are currently on the very same stage, however here the skills will be needed to survive in the attention economy and the skills themselves will be used as access tokens to particular functionality that extends the value of the avatar.
 
 Adding a medium (HTML/JS, image, video, anything) results in creating corresponding IPFS hash that's translated into ERC721 that's owned by an avatar. This token can be minted in the process of learning, however it can't be traded as it becomes a part of a personality. Learning a new skill expands memepool, the same way learning English allowed me to learn about Ethereum. It can occur for free or for particular amount of ERC20/ERC721 tokens defined by a linear or a bonded curve. 
+
+Distribution of the ERC721 can be easily traced through the generations allowing more uses cases and unlocking new monetization models.
