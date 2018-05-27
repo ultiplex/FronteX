@@ -50,7 +50,7 @@ class Congrats extends Component {
                   </a>
                 </React.Fragment>
               ) : (
-                <p>Teaching for {price}Eth</p>
+                <p>Teaching for {price} ETH</p>
               )}
             </div>
           </div>

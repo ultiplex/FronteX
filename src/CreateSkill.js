@@ -103,7 +103,7 @@ class CreateSkill extends Component {
                             {selectedKitty ? (
                               <React.Fragment>
                                 <div className="profile-picture">
-                                  <Kitty id={3} />
+                                  <Kitty id={selectedKitty} />
                                 </div>
                                 <span>Kitty #{selectedKitty}</span>
                                 <span className="icon is-small">

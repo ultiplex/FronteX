@@ -1,4 +1,4 @@
-export const skilleXAddress = '0xdf65fb76094344ee2ab43e5bb51b244b28abd375';
+export const skilleXAddress = '0x9fc424180ac41e35b2f4ce4abbf624cc0c74ea4f';
 export const skilleXAbi = [
   {
     constant: false,

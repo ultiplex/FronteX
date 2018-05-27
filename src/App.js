@@ -3,6 +3,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import web3 from './web3';
 import Home from './Home';
+import Learn from './Learn';
 import ShowSkill from './ShowSkill';
 import CreateSkill from './CreateSkill';
 import CreateCongrats from './CreateCongrats';
@@ -52,6 +53,7 @@ class App extends Component {
               <Route path="/" exact component={Home} />
               <Route path="/create" component={CreateSkill} />
               <Route path="/create-congrats" component={CreateCongrats} />
+              <Route path="/learn" component={Learn} />
               <Route path="/show/:kittyId/:skillHash" component={ShowSkill} />
             </div>
           </BrowserRouter>

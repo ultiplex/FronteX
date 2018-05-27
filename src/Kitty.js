@@ -30,11 +30,16 @@ class Kitty extends Component {
   };
 
   componentDidMount() {
-    this.fetch();
+    this.fetch(this.props.id);
   }
 
-  fetch = async () => {
-    const { id } = this.props;
+  componentWillReceiveProps(newProps) {
+    if (this.props.id !== newProps.id) {
+      this.fetch(newProps.id);
+    }
+  }
+
+  fetch = async (id) => {
     getKittySvg(id).then((svg) => {
       this.setState({ svg });
     });
