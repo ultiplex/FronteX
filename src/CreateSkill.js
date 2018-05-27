@@ -13,14 +13,14 @@ class CreateSkill extends Component {
   state = {
     ipfsLoaded: false,
     uploading: false,
-    ipfsHash: '',
+    transaction: false,
     isDropdownOpened: false,
     file: null,
     title: '',
     selectedKitty: null,
   };
 
-  componentDidMount(props) {
+  componentDidMount() {
     import('ipfs-api').then((Ipfs) => {
       this.ipfs = new Ipfs('ipfs.infura.io', { protocol: 'https', port: 5001 });
       this.setState({ ipfsLoaded: true });
@@ -49,12 +49,19 @@ class CreateSkill extends Component {
   };
 
   registerSkill = async (ipfsHash) => {
+    this.setState({ transaction: true });
     const { title, selectedKitty } = this.state;
     const web3Instance = await web3;
     const [from] = await web3Instance.eth.getAccounts();
     const skilleX = new web3Instance.eth.Contract(skilleXAbi, skilleXAddress);
-    const transaction = skilleX.methods.createSkill(title, ipfsHash, KittyAddress, selectedKitty).send({ from });
-    transaction.on('transactionHash', (txHash) => console.log('txHash', txHash));
+    const receipt = await skilleX.methods.createSkill(title, ipfsHash, KittyAddress, selectedKitty).send({ from });
+
+    const eventTransfer = receipt.events[0];
+    this.props.history.push('/create-congrats', {
+      kittyId: selectedKitty,
+      skillHash: ipfsHash,
+      skillId: parseInt(eventTransfer.raw.data, 16),
+    });
   };
 
   selectKitty = (selectedKitty) => () => {
@@ -62,10 +69,14 @@ class CreateSkill extends Component {
   };
 
   render() {
-    const { ipfsLoaded, uploading, ipfsHash, isDropdownOpened, file, title, selectedKitty } = this.state;
+    const { ipfsLoaded, uploading, transaction, ipfsHash, isDropdownOpened, file, title, selectedKitty } = this.state;
 
     if (uploading) {
       return <Loading message="Uploading on IPFS" />;
+    }
+
+    if (transaction) {
+      return <Loading message="Generating ERC721" />;
     }
 
     return (
@@ -133,7 +144,7 @@ class CreateSkill extends Component {
                     type="text"
                     placeholder="Text input"
                     value={title}
-                    onInput={(e) => this.setState({ title: e.target.value })}
+                    onChange={(e) => this.setState({ title: e.target.value })}
                   />
 
                   <p className="label">Files</p>
@@ -151,7 +162,9 @@ class CreateSkill extends Component {
                     </label>
                   </div>
                   <a
-                    className={`button is-generate ${!file || !title || !selectedKitty ? 'disabled' : ''}`}
+                    className={`button is-generate ${
+                      !file || !title || !selectedKitty || !ipfsLoaded ? 'disabled' : ''
+                    }`}
                     onClick={this.generate}
                   >
                     Generate skill
@@ -161,6 +174,7 @@ class CreateSkill extends Component {
             </div>
           )}
         </Web3Context.Consumer>
+        {!ipfsLoaded && <span>Loading ipfs lib</span>}
       </section>
     );
   }

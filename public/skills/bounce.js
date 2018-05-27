@@ -125,8 +125,6 @@ const getStyles = (prefix) => {
       animation-timing-function: ease-out;
       animation-fill-mode: both;
       animation-iteration-count: infinite;
-      /* Types */
-      /* Colors */
     }
 
     .${prefix} .cannon__confetti:nth-child(even) {
@@ -148,6 +146,8 @@ const getStyles = (prefix) => {
     .${prefix} .cannon__confetti:nth-child(odd) {
       animation-name: confetti-rotate-r;
     }
+
+
 
     @keyframes ${prefix}-confetti-rotate-r {
       0% {

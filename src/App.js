@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { HashRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import web3 from './web3';
 import Home from './Home';
-import CreateSkill from './CreateSkill';
 import ShowSkill from './ShowSkill';
+import CreateSkill from './CreateSkill';
+import CreateCongrats from './CreateCongrats';
 import { Web3Context, IdentitiesContext } from './Context';
 
 const KittyAddress = '0x373fbbb20551121e0a24a41d14c48b8ee0599d89';
@@ -46,13 +47,14 @@ class App extends Component {
     return (
       <Web3Context.Provider value={web3State}>
         <IdentitiesContext.Provider value={tokens}>
-          <HashRouter>
+          <BrowserRouter>
             <div>
               <Route path="/" exact component={Home} />
-              <Route path="/create" exacat component={CreateSkill} />
-              <Route path="/show/:kittyId/:skillHash" exacat component={ShowSkill} />
+              <Route path="/create" component={CreateSkill} />
+              <Route path="/create-congrats" component={CreateCongrats} />
+              <Route path="/show/:kittyId/:skillHash" component={ShowSkill} />
             </div>
-          </HashRouter>
+          </BrowserRouter>
         </IdentitiesContext.Provider>
       </Web3Context.Provider>
     );
