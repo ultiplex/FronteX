@@ -1,6 +1,6 @@
 body {
 	height:100vh;
-	background: linear-gradient(141deg, #ffffff, #000000);
+	background: linear-gradient(141deg, #ffe0e5, #d4e8ff);
 	background-size: 400% 400%;
 	-webkit-animation: background 2s 3s forwards ease ;
 	-moz-animation: background 2s 3s forwards ease ;
@@ -194,13 +194,14 @@ body {
 .laser-beam {
   position: absolute;
   left: 50%;
-  bottom: 0;
-  width: 3px;
+  bottom: -10px;
+  width: 10px;
+  opacity:0.6;
   height: 500%;
-  background: rgba(99, 195, 231, 0.6);
-  -webkit-box-shadow: 0px 0px 15px 0px #63c3e7;
-  -moz-box-shadow: 0px 0px 15px 0px #63c3e7;
-  box-shadow: 0px 0px 15px 0px #63c3e7;
+  background: #ffffff;
+  -webkit-box-shadow: 0px 0px 50px 0px #ffffff;
+  -moz-box-shadow: 0px 0px 50px 0px #ffffff;
+  box-shadow: 0px 0px 50px 0px #ffffff;
   -moz-transform-origin: 0 100%;
   -ms-transform-origin: 0 100%;
   -webkit-transform-origin: 0 100%;
@@ -208,25 +209,25 @@ body {
   -webkit-animation: laser 7s 3s infinite;
 }
 .laser-beam.red {
-  -webkit-animation: laser 7.5s 3s infinite;
-  background: rgba(236, 19, 65, 0.6);
-  -webkit-box-shadow: 0px 0px 15px 0px #ec1341;
-  -moz-box-shadow: 0px 0px 15px 0px #ec1341;
-  box-shadow: 0px 0px 15px 0px #ec1341;
+  -webkit-animation: laser 7.8s 3s infinite;
+  background: #ec1341;
+  -webkit-box-shadow: 0px 0px 50px 0px #ec1341;
+  -moz-box-shadow: 0px 0px 50px 0px #ec1341;
+  box-shadow: 0px 0px 50px 0px #ec1341;
 }
 .laser-beam.purple {
-  -webkit-animation: laser 7.3s 3s infinite;
-  background: rgba(204, 102, 255, 0.6);
-  -webkit-box-shadow: 0px 0px 15px 0px #cc66ff;
-  -moz-box-shadow: 0px 0px 15px 0px #cc66ff;
-  box-shadow: 0px 0px 15px 0px #cc66ff;
+  -webkit-animation: laser 7.4s 3s infinite;
+  background: #cc66ff;
+  -webkit-box-shadow: 0px 0px 50px 0px #cc66ff;
+  -moz-box-shadow: 0px 0px 50px 0px #cc66ff;
+  box-shadow: 0px 0px 50px 0px #cc66ff;
 }
 .laser-beam.green {
-  -webkit-animation: laser 7.7s 3s infinite;
-  background: rgba(86, 212, 69, 0.6);
-  -webkit-box-shadow: 0px 0px 15px 0px #56d445;
-  -moz-box-shadow: 0px 0px 15px 0px #56d445;
-  box-shadow: 0px 0px 15px 0px #56d445;
+  -webkit-animation: laser 8.2s 3s infinite;
+  background: #ea6bd4;
+  -webkit-box-shadow: 0px 0px 50px 0px #ea6bd4;
+  -moz-box-shadow: 0px 0px 50px 0px #cdf5d5;
+  box-shadow: 0px 0px 50px 0px #cdf5d5;
 }
 
 @-webkit-keyframes laser {
