@@ -23,23 +23,27 @@ class Learn extends Component {
 
     const passEvents = await skilleX.getPastEvents('OfferCreated', { fromBlock: 0 });
     const offers = await Promise.all(
-      passEvents.map(
-        async ({ returnValues: { generation, offerId, price, skillId, skillName, teacherErc721, teacherTokenId } }) => {
-          const skillHash = await skilleX.methods.getIpfsHash(skillId).call();
-          return {
-            generation,
-            offerId,
-            price,
-            priceEth: web3Instance.utils.fromWei(price),
-            skillId,
-            skillHash,
-            skillName,
-            teacherErc721,
-            teacherTokenId,
-          };
-        },
-      ),
-    ).reverse();
+      passEvents
+        .map(
+          async ({
+            returnValues: { generation, offerId, price, skillId, skillName, teacherErc721, teacherTokenId },
+          }) => {
+            const skillHash = await skilleX.methods.getIpfsHash(skillId).call();
+            return {
+              generation,
+              offerId,
+              price,
+              priceEth: web3Instance.utils.fromWei(price),
+              skillId,
+              skillHash,
+              skillName,
+              teacherErc721,
+              teacherTokenId,
+            };
+          },
+        )
+        .reverse(),
+    );
     this.setState({ offers });
     const events = skilleX.events.OfferCreated({ fromBlock: 0, toBlock: 'latest' });
     events.on('data', (e, d) => {
