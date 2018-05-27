@@ -48,8 +48,8 @@ class App extends Component {
     return (
       <Web3Context.Provider value={web3State}>
         <IdentitiesContext.Provider value={tokens}>
-          <BrowserRouter basename="/">
-            {/* <BrowserRouter basename="/FronteX"> */}
+          {/* <BrowserRouter basename="/"> */}
+          <BrowserRouter basename="/FronteX">
             <div>
               <Route path="/" exact component={Learn} />
               <Route path="/create" component={CreateSkill} />

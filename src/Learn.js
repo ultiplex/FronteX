@@ -39,7 +39,7 @@ class Learn extends Component {
           };
         },
       ),
-    );
+    ).reverse();
     this.setState({ offers });
     const events = skilleX.events.OfferCreated({ fromBlock: 0, toBlock: 'latest' });
     events.on('data', (e, d) => {
