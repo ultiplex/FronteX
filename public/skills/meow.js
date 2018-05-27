@@ -8,7 +8,17 @@ const run = ($container) => {
   };
   $container.appendChild($script);
 
-  $container.addEventListener('click', () => {
+  const $speaker = document.createElement('div');
+  $speaker.innerHTML = '🔊';
+  $speaker.style.cursor = 'pointer';
+  $speaker.style.fontSize = '40px';
+  $speaker.style.position = 'absolute';
+  $speaker.style.bottom = '0';
+  $speaker.style.right = '0';
+
+  $container.appendChild($speaker);
+
+  $speaker.addEventListener('click', () => {
     if (!loaded) {
       console.log('Lib not loaded yet');
     }
